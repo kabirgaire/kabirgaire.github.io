@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+      <meta charset="UTF-8">
+      <title>MyPortfolio</title>
+      <meta name="description" content="自己紹介">
+      <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+      <link rel="stylesheet" href="./css/portfolio.css">
+      <link rel="stylesheet" href="./css/nav.css">
+      <link rel="stylesheet" href="./css/general.css">
+      <link rel="icon" type="image/jpg" href="images/IMG_NGS1.jpg">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <!--Start container-->
+    <div id="container">
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">HOME</a>
+                    </li>
+                    <li>
+                        <a href="works.html">works</a>
+                    </li>
+                    <li>
+                        <a href="about_me.html">about</a>
+                    </li>
+                    <li>
+                        <a href="contact_me.html">contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div id="wrapper">
+            <!--main-->
+            <main id="main">
+              <!--section-->
+                <section>
+                    <h2>Works</h2>
+                    <div id="works">
+                        <div id="kadai9">
+                            <p><a href="kadai9/index.html">課題９</a></p>
+                        </div>
+                        <div id="kadai10">
+                            <p><a href="kadai10/index.html">課題１０</a></p>
+                        </div>
+                        <div id="kadai20">
+                            <p><a href="kadai20/index.html">課題２０</a></p>
+                        </div>
+                        <div id="kadai21">
+                            <p><a href="kadai21/index.html">課題２１</a></p>
+                        </div>
+                        <div id="kadai22">
+                            <p><a href="kadai22/index.html">課題２２</a></p>
+                        </div>
+                    </div>
+                </section>
+                <!--/section-->
+            </main>
+            <!--/main-->
+            <!--top-->
+            <p class="pagetop">
+                <a href="#" title="ページトップへ戻る">
+                    <img src="images/pagetop.png" alt="ΔPAGE TOP">
+                </a>
+            </p>
+            <!--footer Section-->
+            <footer>   
+                <div>
+                    <p>Last Modified:
+                        <script>
+                            var modified = new Date(document.lastModified);
+                            var year = modified.getFullYear();
+                            var month= modified.getMonth() + 1;
+                            var date = modified.getDate();
+                            var day  = modified.getDay();
+                            var youbi= ['日','月','火','水','木','金','土']
+                            document.write( year + "年" + month + "月" + date + "日" + youbi[day] + "曜日"); 
+                        </script>
+                    </p>
+                    <p><small>&copy;Kabir Gaire, All Rights Reserved.</small></p>
+                </div>
+            </footer><!-- /Footer-->
+        </div><!--/wrapper-->
+    </div><!--/container-->
+  </body>
+</html>

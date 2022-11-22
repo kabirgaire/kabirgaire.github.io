@@ -1,0 +1,42 @@
+@charset "utf-8";
+body{
+    background-image: url(../images/bg.png);
+    margin: 0;
+}
+div#container{
+    width: 80%;
+    margin: auto auto;
+    background-color: aliceblue;
+}
+
+header{
+    background-color: rgb(164, 213, 255);
+    height: 300px;
+}
+h1{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: rgb(34, 122, 180);
+    background-color: rgb(132, 250, 210);
+    margin: 0;
+    padding: 1rem 1rem 0;
+}
+h2{
+    font-family: "游ゴシック体","Yu Gothic",YuGothic,sans-serif;
+    color: rgb(180, 34, 107);
+    background-color: rgb(132, 250, 210);
+    padding: 0.5rem 0.5rem 0;
+    border-bottom: 3px solid rgb(146, 146, 146);
+    border-left: 3px solid rgb(255, 175, 175);
+    margin-top: 0;
+}
+p{
+    font-family: "ヒラギノ丸ゴ Pro W4","Hiragino Maru Gpthic Pro",sans-serif;
+    line-height: 1.7;
+    text-align: justify;
+    color: rgb(253, 97, 24);
+    padding: 0 1rem;
+    margin-block-end: 0;
+}
+q{
+    font-size: 1.2rem;
+}

@@ -1,0 +1,17 @@
+@charset "utf-8";
+html{
+    scroll-behavior: smooth;
+}
+p.pagetop {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    opacity: 0.20;
+}
+p.pagetop a {
+    display: block;
+    text-decoration: none;
+}
+p.pagetop:hover {
+    opacity: 0.85;
+}

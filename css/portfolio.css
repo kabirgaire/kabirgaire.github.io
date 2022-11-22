@@ -1,0 +1,116 @@
+@charset "utf-8";
+#works{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,200px);
+    justify-content: space-around;
+    gap: 10px;
+}
+#works a{
+    display: inline-block;/*ブロック要素にする*/
+    width:200px;/*ブロック要素にしたので幅や高さが指定出来る*/
+    height:200px;
+    font-size:2em;
+    color:blue;
+    padding-top:50px;
+    box-sizing: border-box;
+}
+#works p{
+    margin: 0;
+}
+#kadai9{
+    background-image: url("../images/kadai9.png");
+    background-size: cover;
+
+}
+#kadai10{
+    background-image: url("../images/kadai10.png");
+    background-size: cover;
+}
+#kadai20{
+    background-image: url("../images/kadai20.png");
+    background-size: cover;
+}
+#kadai21{
+    background-image: url("../images/kadai21.png");
+    background-size: cover;
+}
+#kadai22{
+    background-image: url("../images/kadai22.png");
+    background-size: cover;
+}
+/*=======================
+        Animation
+=========================*/
+#works a{
+    opacity: 0.1;
+    background-color: aqua;
+    transition: all 1s;
+    transform: translate(0,0);
+}
+#works a:visited{
+    color:rgb(255, 138, 138);
+}
+#works div:hover a{
+    opacity: 1;
+    border: solid rgb(129,41,88) 3px;
+    background-color: rgb(82, 82, 82);
+    transform: translate(10px,10px);
+}
+
+#about{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#about table{
+    border-collapse: collapse;
+    margin: auto;
+}
+#about th, td{
+    background-color: aquamarine;
+}
+#about th{
+    background-color:antiquewhite;
+}
+#about #profile th{
+    text-align-last: justify;
+}
+#about section ol li{
+    padding-left: 50px;
+}
+
+#contact{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#contact form{
+    margin: 0 1em 20px 2em;
+}
+#contact form input, #contact form textarea{
+    border: none;
+    border-bottom: solid 1px gray;
+}
+#contact #textarea{
+    position:relative;
+    margin-bottom: 3em;
+}
+#contact form textarea{
+    position:absolute;
+    border: solid 1px black;
+}
+#contact form div{
+    line-height: 2em;
+    padding: 10px;
+}
+#contact form button{
+    border: solid gray;
+    border-radius: 5px;
+    width: 5em;
+    display: block;
+    margin: auto;
+    height: 2em;
+}
+#contact form *:invalid{
+    border-color: brown;
+}

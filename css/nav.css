@@ -1,0 +1,17 @@
+@charset "utf-8";
+#container>header>nav>ul{
+    display: flex;
+}
+#container>header>nav>ul>li>a{
+    display: block;
+    padding: 8px 0 7px 28px;
+    cursor: pointer;
+}
+
+/*Mobile*/
+@media screen and (max-width:767px) {
+    /*header*/
+    #container>header>nav>ul>li>a{
+        padding: 8px 0 7px 10px;
+    }
+}
