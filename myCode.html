@@ -1,0 +1,315 @@
+<html>
+<head>
+
+    <title>
+        myCode BallGame
+    </title>
+    <style>  body{background:black;color:rgb(255, 255, 255);}</style>
+</head>
+<body>
+
+    <h1>
+        myCode BallGame
+    </h1>
+    <pre>
+    <code>
+        ////////
+        ballgame.pde
+        ////////
+
+        import java.util.List;
+        import java.util.Arrays;
+        import java.util.ArrayList;
+
+        int i = 0 ,  score=0 , count = 0;     color c;
+        player b = new player();
+        pillar[] p = new pillar[3];
+
+        boolean end=false;//起動したら画面は停止される
+        boolean intro=true;//キーで動かせるようにする
+        boolean isHit = false; // ヒットしたかのフラグ　障害物と当たったらtrueになる
+
+        void setup(){
+            size(800,800);
+            
+            PFont font = createFont("Meiryo", 50);//日本語
+            textFont(font);//日本語
+            
+            for(int i = 0;i<3;i++){
+                p[i]=new pillar(i);
+            }
+        
+        }
+
+            void draw(){
+            
+            back();
+            
+            screen(millis()/1000);
+        
+        }
+
+        ////////
+        background.pde
+        ////////
+
+        void back(){
+            //background(150,157,186);//背景の色
+          //background(c1,c2,c3);
+          background(c);
+          int s = ((int)millis())/1000;
+          
+          if( s == i ){
+            c = color( ((int)random(0,255)) , ((int)random(0,255)) , ((int)random(0,255)) );
+            i=i+5;
+          }
+          
+        }
+
+        ////////
+        cross.pde
+        ////////
+        void cross(){
+
+            line(mouseX,0,mouseX,height);
+            line(0,mouseY,width,mouseY);
+            stroke(255);
+            text("X:"+mouseX+" Y:"+mouseY,140,50);
+             
+          }
+          
+          ////////
+          keycon.pde
+          ////////
+          void keyPressed(){
+            switch( key ) {
+              case ' ': case 'w' : b.jump();//キー割り当て
+              intro=false;//キーを押すとintroがtrueからfalseになり
+                          //falseになったらbirdクラスのjumpが動く
+              if(end==false){ //停止状態
+                reset();
+              }
+            break;
+            
+            //
+            case 'e':b.invi();
+              isHit=false;
+              if(end==false){
+                reset();
+              }
+            break;
+            }
+            //
+          }
+          
+
+          ////////
+          mousecon.pde
+          ////////
+          void mousePressed(){
+            b.jump(); //マウスのどこを押しても
+            intro=false;
+            if(end==false){
+              reset();
+            }
+          }
+          
+
+          ////////
+          pillar.pde
+          ////////
+          //障害物の壁
+            class pillar{
+            float xPos, wallSpace;
+            boolean cashed = false;
+            pillar(int i){
+                xPos = 200+(i*280);//棒と棒の間隔が狭まる(1)
+                wallSpace = random(400)+100;//壁が出てくる範囲(上)
+            }
+            void drawPillar(){
+            line(xPos,0,xPos,wallSpace-100);//壁のない範囲
+            line(xPos,wallSpace+100,xPos,800);//壁のない範囲、
+            }
+            
+            void checkPosition(){
+                
+                if(xPos<0){
+                xPos+=(280*3);//棒と棒の間隔が広がる(1)
+                wallSpace = random(400)+100;//壁が出てくる範囲(下)
+                cashed=false;
+                }
+                
+                if(xPos<250&&cashed==false){//
+                cashed=true;
+                score=score+1;//スコアの追加する点数
+                }
+            }
+            }
+
+            void reset(){
+            end=true;
+            score=0;//スコアの初期値は0
+            b.yPos=100;//ボールの開始位置
+            for(int i = 0;i<3;i++){
+                p[i].xPos+=550;//スタートから壁が出てくるまでの範囲
+                p[i].cashed = false;
+            }
+            }
+
+
+          ////////
+          player.pde
+          ////////
+          class player{
+            float xPos,yPos,ySpeed;
+            player(){
+              xPos = 300;//タイトル画面のプレイヤーのx軸  // player x co-ordinates
+              yPos = 340;//タイトル画面のプレイヤーのy軸  // player y co-ordinates
+            }
+            void drawplayer(){
+              stroke(255);
+              noFill();
+              strokeWeight(2);
+              rect(xPos,yPos,20,20);//操作キャラの大きさ
+            }
+            void jump(){
+              ySpeed=-3;//ジャンプで上がる高さ
+            }
+            void drag(){
+              ySpeed+=0.2;//落ちる速さ
+            }
+            void move(){
+              yPos+=ySpeed; 
+              for(int i = 0;i<3;i++){   // i = no.of walls
+                p[i].xPos-=3;//スクロールスピード   //game speed
+              }
+            }
+            //
+            void invi(){
+              if (intro && count == 0) {
+              // 当たったときの処理
+              count = 30; // 無敵時間をセット  //invincible period in seconds
+            }
+          
+            if (count > 0) {
+              xPos = 0;
+              --count;
+              if (count <= 0) {
+                // 無敵時間の終わり //invincible period
+                count = 0;
+                intro = false;
+                } 
+              }
+            }
+            
+            //  collision
+            void checkCollisions(){
+             if(yPos>800){
+               end=false;
+             }
+             
+             //↓当たり判定  //  collision
+             for(int i = 0;i<3;i++){                         // p == pillar
+               if((xPos<p[i].xPos+10 && xPos>p[i].xPos-10)  // 10 pixel before and after piller
+                   &&(yPos<p[i].wallSpace-100||yPos>p[i].wallSpace+100)){  // 
+               end=false;
+               }
+             }
+            }
+          }
+          
+          ////////
+          screen.pde
+          ////////
+
+          void screen(int a) {
+  
+  
+            if (end) {
+              b.invi();
+            }
+          
+            if (end) {
+              b.move();
+            }
+          
+            b.drawplayer();
+            if (end) {
+              b.drag();
+            }
+          
+            b.checkCollisions();
+            for (int i = 0; i<3; i++) {
+              p[i].drawPillar();
+              p[i].checkPosition();
+            }
+            fill(0);
+            stroke(255);
+            textSize(32);
+          
+            
+            if (end) {
+          
+              rect(20, 20, 100, 50);//初めの座標～終わりの座標
+              fill(255);
+              text(score, 30, 58);//"文字",ｘ,ｙ座標
+            } else {
+              //black textbox
+          
+              rect(width/2-225, 100, 450, 70); //game start / end
+              rect(width/2-150, 500, 350, 50);
+          
+              fill(255);
+              stroke(255);
+          
+          
+              //start screen
+              if (intro) {
+                background(50);
+                //lines();
+          
+                textSize(70);
+                text("ボールゲーム", width/2-200, 145);
+          
+                textSize(20);
+                text("---クリックで開始---", width/2-100, 538);
+              }
+              
+              
+          
+          
+              //end screen
+              else {
+                background(50);
+                cross();
+                
+                textSize(70);
+                text("ゲーム・オーバー", width/2-275, 145);  //game end
+          
+                //score + score varible
+                fill(255);
+                stroke(255);
+          
+                textSize(20);
+                text("スコア", width/2-100, 350);
+                text(score, width/2+80, 350);
+          
+                text("プレイタイム", width/2-100, 380);
+                text(a, width/2+80, 380);
+                
+          
+                //restart button
+                fill(0);
+          
+          
+                fill(255);
+          
+                text("---クリックで再プレイ---", 285, 538);  // click to restart button
+              }
+            }
+          }
+          
+        </code>
+    </pre>
+</body>
+</html>
